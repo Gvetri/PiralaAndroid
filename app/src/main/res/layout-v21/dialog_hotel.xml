@@ -1,53 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/appbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_keyboard_backspace"
+                android:tint="@android:color/white"
+                android:maxHeight="8sp"
+                android:maxWidth="8sp" />
+
+            <android.support.v7.widget.AppCompatRatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:id="@+id/ratingbar"
+                android:layout_marginLeft="40dp"
+                android:rating="3"
+                android:isIndicator="true"
+                android:progressTint="@color/CardNameColor" />
+
+
+        </android.support.v7.widget.Toolbar>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/imageView2"
             android:src="@mipmap/hotel1"
-            android:layout_weight="12" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="Nombre de hotel"
-        android:id="@+id/textView2"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@android:color/background_light"
-        android:textSize="@dimen/abc_text_size_headline_material"
-        android:layout_weight="3"
-        android:gravity="fill_vertical" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5">
-
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ratingBar"
-            android:numStars="5"
-            android:rating="3"
-            style="@android:style/Widget.Holo.Light.RatingBar"
-            android:progressTint="@color/CardNameColor" />
+            android:adjustViewBounds="true"
+            android:layout_weight="3" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault"
-            android:text="Descripcion de hotel"
-            android:id="@+id/textView3"
-            android:layout_below="@+id/ratingBar"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:textColor="@color/bright_foreground_inverse_material_dark"
-            android:textSize="16dp" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Luxury Hotel"
+            android:id="@+id/hotel_name"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@android:color/background_light"
+            android:textSize="@dimen/abc_text_size_headline_material"
+            android:gravity="fill_vertical"
+            android:layout_weight="1" />
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="2">
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Resumen"
+                android:id="@+id/textView4"
+                android:textColor="@color/switch_thumb_disabled_material_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Descripcion del hotel"
+                android:id="@+id/description"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/black" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Telefono:"
+                    android:id="@+id/textView5"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="0242-123456"
+                    android:id="@+id/telephone"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Correo"
+                    android:id="@+id/textView6"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="reservas@luxuryhotel.com"
+                    android:id="@+id/email"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
