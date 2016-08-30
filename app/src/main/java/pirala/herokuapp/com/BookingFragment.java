@@ -120,7 +120,8 @@ public class BookingFragment extends Fragment {
 
     private void prepareBookingData() {
 
-            String url = "http://192.168.1.102:3001/api/v1/bookings.json";
+//            String url = "http://192.168.1.102:3001/api/v1/bookings.json";
+        String url = "https://pirala.herokuapp.com/api/v1/bookings.json";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>(){
 

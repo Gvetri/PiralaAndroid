@@ -84,7 +84,8 @@ public class SignupActivity extends AppCompatActivity {
             }
 
             private void IniciarRegistro() {
-                String url = "http://192.168.1.102:3001/users.json";
+//                String url = "http://192.168.1.102:3001/users.json"; url local
+                String url = "https://pirala.herokuapp.com/users.json";
                 JSONObject jsonObject = new JSONObject();
                 String email_string = email.getText().toString();
                 String name_string = name.getText().toString();

@@ -41,7 +41,7 @@ import pirala.herokuapp.com.model.Booking;
  * Created by giuseppe on 22/07/16.
  */
 public class BookingDialog extends DialogFragment {
-    private static final String URL = "http://192.168.1.102:3001/api/v1/bookings/";
+    private static final String URL = "https://pirala.herokuapp.com/api/v1/bookings/";
     private static final String TAG = "BookingDialog";
     private static final String MY_PREFS_NAME = "USERINFO";
     private RequestQueue requestQueue;

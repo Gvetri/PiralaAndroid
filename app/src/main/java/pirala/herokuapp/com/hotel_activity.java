@@ -24,9 +24,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -39,7 +41,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pirala.herokuapp.com.adapters.HotelsAdapter;
 import pirala.herokuapp.com.dialogs.HotelDialog;
@@ -52,7 +56,8 @@ public class hotel_activity extends Fragment {
     private HotelsAdapter adapter;
     private List<Hotel> hotelList;
     RequestQueue requestQueue;
-
+    private TextView buscador;
+    private ImageView iv_buscador;
 
 
     @Nullable
@@ -68,6 +73,19 @@ public class hotel_activity extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         recyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view);
+        buscador = (TextView) getView().findViewById(R.id.et_buscador);
+        iv_buscador = (ImageView) getView().findViewById(R.id.iv_buscador);
+
+        iv_buscador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = getContext();
+                String query = buscador.getText().toString();
+                hotelList.clear();
+                prepareHotels(query);
+
+            }
+        });
 
         hotelList = new ArrayList<>();
         adapter = new HotelsAdapter(getContext(),hotelList);
@@ -78,7 +96,7 @@ public class hotel_activity extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         requestQueue = Volley.newRequestQueue(getContext());
-        prepareHotels();
+        prepareHotels("");
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -103,8 +121,10 @@ public class hotel_activity extends Fragment {
     }
 
 
-    private void prepareHotels() {
-        String url = "http://192.168.1.102:3001/hoteles2.json";
+    private void prepareHotels(final String s) {
+//        String url = "http://192.168.1.102:3001/hoteles2.json";
+        //String url = "https://pirala.herokuapp.com/hoteles2.json";
+        String url = "https://pirala.herokuapp.com/api/v1/hotels.json";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,
                 new Response.Listener<JSONObject>()
                 {
@@ -137,10 +157,20 @@ public class hotel_activity extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e(TAG,error.getMessage());
-                        Toast.makeText(getContext(), "Ha ocurrido un error cargando los hoteles", Toast.LENGTH_SHORT).show();
+//                        Log.e(TAG,error.getMessage());
+//                        Toast.makeText(getContext(), "Ha ocurrido un error cargando los hoteles", Toast.LENGTH_SHORT).show();
                     }
-                });
+                })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Accept:", "application/json");
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("x-name",s);
+                return headers;
+            }
+        };
         requestQueue.add(jsonObjectRequest);
     }
 

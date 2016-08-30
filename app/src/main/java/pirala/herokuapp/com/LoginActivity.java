@@ -210,7 +210,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void IniciarSesion() {
 
-            String url = "http://192.168.1.102:3001/users/sign_in";
+//            String url = "http://192.168.1.102:3001/users/sign_in"; url local
+            String url = "https://pirala.herokuapp.com/users/sign_in";
             JSONObject jsonObject = new JSONObject();
             String email_string = mEmailView.getText().toString();
             String password_string = mPasswordView.getText().toString();

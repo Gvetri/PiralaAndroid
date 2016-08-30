@@ -11,8 +11,32 @@
     android:orientation="vertical">
 
 
-    <include layout="@layout/content_hotel" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
 
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:id="@+id/iv_buscador"
+            android:src="@android:drawable/ic_menu_search"
+            android:layout_weight="0.25" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/et_buscador"
+            android:hint="Ingrese nombre para buscar"
+            android:layout_weight="0.95"
+            android:textColorHint="#000000" />
+
+    </LinearLayout>
+
+    <include layout="@layout/content_hotel" />
 
 
 </LinearLayout>

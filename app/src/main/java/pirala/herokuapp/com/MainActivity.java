@@ -1,5 +1,6 @@
 package pirala.herokuapp.com;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -119,7 +121,14 @@ public class MainActivity extends AppCompatActivity
                 ft.commit();
                 item.setChecked(true);
                 setTitle(item.getTitle());
-
+            case R.id.sign_out:
+                Context context = getApplicationContext();
+                DB_Ops.CerrarSesion(context);
+//                finish();
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish(); // Call once you redirect to another activity
         }
 
         drawer.closeDrawer(GravityCompat.START);
