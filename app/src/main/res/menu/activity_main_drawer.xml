@@ -8,7 +8,11 @@
         <item
             android:id="@+id/nav_booking"
             android:icon="@mipmap/ic_calendar_today_white_24dp"
-            android:title="@string/gallery" />
+            android:title="@string/bookings" />
+        <item
+            android:id="@+id/sign_out"
+            android:icon="@mipmap/ic_exit_to_app"
+            android:title="@string/Cerrar_sesion" />
     </group>
 
 

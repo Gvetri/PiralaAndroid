@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="88dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/relativeLayout"
+    android:paddingTop="8dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:src="@mipmap/ic_calendar_today_white_36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:background="@color/colorAccent"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del hotel de reserva"
+        android:id="@+id/hotel_name"
+        android:textColor="@color/abc_primary_text_material_light"
+        android:textSize="16sp"
+        android:paddingLeft="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Reserva creada el:"
+        android:id="@+id/textView9"
+        android:textSize="14sp"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="72dp"
+        android:layout_alignParentEnd="false"
+        android:layout_below="@+id/hotel_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22-07-2016"
+        android:id="@+id/created_at_tv"
+        android:textSize="14sp"
+        android:layout_alignTop="@+id/textView11"
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_toEndOf="@+id/textView9"
+        android:paddingLeft="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Inicio reserva:"
+        android:id="@+id/textView11"
+        android:textSize="14sp"
+        android:layout_alignStart="@+id/textView9"
+        android:paddingLeft="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView9" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="27-07-2016"
+        android:id="@+id/booking_in_tv"
+        android:textSize="14sp"
+        android:layout_above="@+id/textView11"
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_toEndOf="@+id/textView9"
+        android:paddingLeft="20dp" />
+
+</RelativeLayout>
