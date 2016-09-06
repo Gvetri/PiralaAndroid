@@ -241,6 +241,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(LoginActivity.this, "Iniciando sesion...", Toast.LENGTH_SHORT).show();
                                     JSONObject jo = response.getJSONObject("user");
                                     SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                                    Log.d(TAG, "onResponse: id: "+jo.getInt("id")+"Email: "+jo.getString("email")+"Token"+jo.getString("authentication_token"));
                                     editor.putInt("id_user",jo.getInt("id"));
                                     editor.putString("email",jo.getString("email"));
                                     editor.putString("token",jo.getString("authentication_token"));

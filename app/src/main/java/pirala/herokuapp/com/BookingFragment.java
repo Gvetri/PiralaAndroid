@@ -77,6 +77,7 @@ public class BookingFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getUserCredentials();
+        Log.d(TAG, "onActivityCreated: Email: "+email_string + " Token: "+token_string);
         recyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view);
         bookingList = new ArrayList<>();
         bAdapter = new BookingAdapter(bookingList);
@@ -104,11 +105,22 @@ public class BookingFragment extends Fragment {
     }
 
     private void getUserCredentials() {
-        SharedPreferences prefs = getActivity().getSharedPreferences(MY_PREFS_NAME,Context.MODE_PRIVATE);
-        email_string = prefs.getString("email", null);
-        token_string = prefs.getString("token",null);
-        id_user = prefs.getInt("id_user",0);
-
+//        Context context = getContext();
+//        SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME,Context.MODE_PRIVATE);
+//        email_string = prefs.getString("email", null);
+//        token_string = prefs.getString("token",null);
+//        id_user = prefs.getInt("id_user",0);
+//        if ((email_string == null) && (token_string ==null) && (id_user ==0)){
+//            Log.e(TAG, "getUserCredentials: Los id son nulos :(");
+//        }
+//
+//
+//        Log.d(TAG, "getUserCredentials: "+email_string+ "\n"+token_string+"\n"+id_user+"\n");
+        List<String> credenciales = DB_Ops.ObtenerCredenciales(getContext());
+        email_string = credenciales.get(0);
+        token_string = credenciales.get(1);
+        id_user = Integer.parseInt(credenciales.get(2));
+        Log.d(TAG, "getUserCredentials: "+email_string+ "\n"+token_string+"\n"+id_user+"\n");
     }
 
     private void showBookingDialog(Booking booking) {
@@ -164,7 +176,7 @@ public class BookingFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getActivity(), "Ha ocurrido un error cargando las reservas", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Ha ocurrido un error cargando las reservas", Toast.LENGTH_SHORT).show();
             }
         })
         {

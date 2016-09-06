@@ -1,6 +1,7 @@
 package pirala.herokuapp.com;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity
         Log.i(TAG,"Informacion del email: "+email);
         Log.i(TAG,"Informacion del token: "+token);
         Log.i(TAG, String.format("Informacion del id: %d", id));
-
 
 
         hotel_activity h = new hotel_activity();
@@ -122,13 +123,19 @@ public class MainActivity extends AppCompatActivity
                 item.setChecked(true);
                 setTitle(item.getTitle());
             case R.id.sign_out:
-                Context context = getApplicationContext();
-                DB_Ops.CerrarSesion(context);
-//                finish();
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish(); // Call once you redirect to another activity
+                final Context context = this;
+                new AlertDialog.Builder(context).setTitle("Confirmar cerrar sesion")
+                        .setMessage("¿Estas seguro que deseas cerrar sesion?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DB_Ops.CerrarSesion(context);
+                                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish(); // Call once you redirect to another activity
+                            }
+                        }).setNegativeButton("No",null).show();
         }
 
         drawer.closeDrawer(GravityCompat.START);

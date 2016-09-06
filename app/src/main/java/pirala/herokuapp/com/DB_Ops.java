@@ -34,13 +34,29 @@ public class DB_Ops {
     private static final String TAG = "DBOPS";
     private ArrayList<Hotel> hotelList;
 
+    public static String URL = "https://pirala.herokuapp.com/api/v1";
+
     public static void CerrarSesion(Context context){
-        SharedPreferences.Editor editor = context.getSharedPreferences(MY_PREFS_NAME,Context.MODE_PRIVATE).edit();;
+        SharedPreferences.Editor editor = context.getSharedPreferences(MY_PREFS_NAME,Context.MODE_PRIVATE).edit();
         editor.putInt("id_user", 0);
         editor.putString("email","null");
         editor.putString("token","null");
         editor.apply();
         Toast.makeText(context, "Ha cerrado sesion", Toast.LENGTH_SHORT).show();
+    }
+
+    public static List<String> ObtenerCredenciales(Context context){
+        List<String> credenciales = new ArrayList<>();
+        SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
+        String email = prefs.getString("email", null);
+        String token = prefs.getString("token", null);
+        int id = prefs.getInt("id_user", 0);
+        String id_string = String.valueOf(id);
+        credenciales.add(email);
+        credenciales.add(token);
+        credenciales.add(id_string);
+        Log.d(TAG, "getUserCredentials: "+email+ "\n"+token+"\n"+id_string+"\n");
+        return credenciales;
     }
 
     public static List<Hotel> BuscarHoteles(View v, final Context context, final String query, final List<Hotel> hotelList) {
